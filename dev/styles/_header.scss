@@ -1,0 +1,17 @@
+/* =========================================
+HEADER
+============================================ */
+
+header{
+	display:flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.main__nav{
+	font-family: $sans;
+	li{
+		padding: 10px;
+		font-size: 1.4rem;
+	}
+}

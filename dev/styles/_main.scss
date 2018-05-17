@@ -1,0 +1,34 @@
+/* =========================================
+MAIN STYLES
+============================================ */
+
+.wrapper{
+	width: 90%;
+	max-width: 1700px;
+	margin: 0 auto;
+}
+
+ul{
+	display:flex;
+}
+
+.PhotoWrapper{
+	display:flex;
+}
+
+.canvasContainer{
+	width:60%;
+}
+canvas{
+	border: 1px solid black;
+	width: 100%;
+	height: 100%;
+}
+
+.filter{
+	width: 40%;
+}
+
+.filter__buttonContainer{
+	display: flex;
+}

@@ -1,0 +1,32 @@
+/* =========================================
+TYPOGRAPHY STYLES
+============================================ */
+
+/* ------------  FONT VARIABLES  ------------ */
+
+$cursive: 'Sacramento', cursive;
+$heading: 'Fjalla One', sans-serif;
+$sans: 'Lato', sans-serif;
+
+
+
+/* ------------  BASE STYLES  ------------ */
+
+.heading{
+	font-size: 6rem;
+}
+
+h1{
+	display: inline-block;
+	font-family: $heading;
+}
+
+h2{
+	text-transform: uppercase;
+	text-align: center;
+	font-family: $heading;
+}
+
+.cursive{
+	font-family: $cursive;
+}

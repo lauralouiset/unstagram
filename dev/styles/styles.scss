@@ -1,0 +1,39 @@
+/* =========================================
+UGLYGRAM - the Instragram for Hideousness!
+Project by Laura-Louise Tobin
+Hacker You Web Development Bootcamp 
+============================================ */
+@import 'setup';
+@import 'var-mix';
+@import 'typography';
+@import 'utils';
+
+
+@import 'components';
+@import 'header';
+@import 'main';
+@import 'footer';
+
+/* ------------  BASE  ------------ */
+
+html{
+	font-size: 62.5%;
+}
+
+img{
+	max-width: 100%;
+	display: block;
+}
+
+a{
+	text-decoration: none;
+	color:inherit;
+	&:visited{
+		color: inherit;
+	}
+}
+
+ul,
+ol{
+	list-style: none;
+}
