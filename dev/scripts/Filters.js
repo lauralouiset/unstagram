@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const Filter = () => {
+const Filters = () => {
 	return(
 		<div className="filter">
 			<h2>Uglify Your Photo</h2>
@@ -21,4 +21,4 @@ const Filter = () => {
 
 
 
-export default Filter;
+export default Filters;

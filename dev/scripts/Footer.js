@@ -5,11 +5,6 @@ const Footer = () => {
 	return(
 		<footer>
 
-		<div className="photoButtons">
-		<button className="btn--submit">Upload Photo</button>
-		<button className="btn--submit">Save Photo</button>
-		</div>
-
 		<div className="credits">
 			<p>Built by <a href="http://laura.loui.se"><span className="cursive">Laura-Louise</span></a></p>
 			<ul className="footer__socialmedia">
