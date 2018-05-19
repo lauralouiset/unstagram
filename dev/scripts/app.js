@@ -14,53 +14,66 @@ var config = {
 	messagingSenderId: "351785856531"
 };
 firebase.initializeApp(config);
+// sets Firebase as storage location
+const storageRef = firebase.storage().ref();
+const currentFolder = storageRef.child('currentPhoto')
 
 class App extends React.Component {
 	constructor(){
 		super();
 		this.state = {
-			photos:{
+				photoFile: '',
 				currentPhoto: '',
-			},
-		}
-		this.handleChange = this.handleChange.bind(this);
-		this.uploadPhoto = this.uploadPhoto.bind(this);
-	}
-	handleChange(e){
-		this.setState(
-			{ 
-				value: event.target.file
-			})
-	}
+				}
 
-	uploadPhoto(e) {
+		this.handleChange = this.handleChange.bind(this);
+		this.updatePhotoFile = this.updatePhotoFile.bind(this);
+		this.submitPhoto = this.submitPhoto.bind(this);
+		}
+	handleChange(e){
 		e.preventDefault();
-		const file = e.target.files[0];
-		const storageRef = firebase.storage().ref();
-		console.log(file.name)
-		const currentImg = storageRef.child(file.name);
-		// const currentPhotos = storageRef.child('/photos/currentPhotos')
-		// const pastPhotos = storageRef.child('/photo/pastPhotos');
-		currentPhoto.put(file).then( (snapshot) => {
-		} );
-		const currentPhotoURL = storageRef.child(file.name).getDownloadURL()
-			.then(function (){
-				this.setState (
-					this.state.currentPhoto = currentPhotoURL
-				)
-			});
-	
+		this.setState({
+		value: e.target.value
+		})
 	}
-    render() {
-      return (
-        <div className="wrapper">
-          <Header />
-					<PhotoWrapper
-							uploadPhoto = {this.uploadPhoto}/>
-					<Footer />
-        </div>
-      )
-    }
+	updatePhotoFile(e){
+		const newPhoto = e.target.files[0];
+		console.log(newPhoto)
+		this.setState({
+			value: e.target.value,
+			photoFile : newPhoto
+		})
+	}
+	submitPhoto(e){
+		e.preventDefault();
+		let file = this.state.photoFile;
+		// create a spot for the image in Firebase directory
+		const newImg = storageRef.child('currentPhoto/' + file.name);
+		// upload file to Firebase
+		newImg.put(file).then((snapshot) => {
+		//retrieve new url of image from Firebase
+				newImg.getDownloadURL().then((url) => {
+					console.log(url);
+					this.setState({
+		//update state to make currentPhoto URL available to canvas
+						currentPhoto: url
+					})
+				})
+			});
+		}
+	render() {
+		return (
+			<div className="wrapper">
+				<Header />
+				<PhotoWrapper
+						handleChange = {this.handleChange}
+						updatePhotoFile = {this.updatePhotoFile}
+						submitPhoto = {this.submitPhoto}
+						currentPhoto={this.state.currentPhoto} />
+				<Footer />
+			</div>
+		)
+	}
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
