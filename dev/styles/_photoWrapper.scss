@@ -23,8 +23,6 @@ ul{
 
 canvas{
 	border: 1px solid black;
-	width: 100%;
-	height: 100%;
 }
 
 .hidden{
@@ -45,7 +43,7 @@ canvas{
 	width: 40%;
 }
 
-.filter__buttonContainer{
+.buttonContainer{
 	display: flex;
 	flex-flow: row wrap;
 }
