@@ -3,9 +3,18 @@ HEADER
 ============================================ */
 
 header{
+	background-color: $accent-green;
+}
+
+.header__content{
 	display:flex;
 	align-items: center;
 	justify-content: space-around;
+	color: white;
+}
+
+.header__text{
+	font-size: 3rem;
 }
 
 .main__nav{

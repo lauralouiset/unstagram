@@ -13,14 +13,21 @@ class PhotoWrapper extends React.Component {
 		super();
 		this.validTypes = ['image/png', 'image/jpg', 'image/gif', 'image/jpeg'];
 		this.state = {
-			photoFile: '',
-			dataURL: '',
-			result: '',
+			currentPhoto: '../../../assets/placeholder.jpg',
+			blur: '0',
+			contrast: '100',
+			brightness: '100',
+			invert: '0',
+			hueRotate: '0',
+			saturate: '100',
+			sepia: '0',
 
 		}
-		this.overlay = this.overlay.bind(this);
 		this.inputPhoto = this.inputPhoto.bind(this);
-		this.updateCanvas = this.updateCanvas.bind(this);
+		this.filter1 = this.filter1.bind(this);
+		this.fadedNewspaper = this.fadedNewspaper.bind(this);
+		this.resetPhoto = this.resetPhoto.bind(this);
+
 	}
 	componentDidMount(){
 		const config = {
@@ -33,10 +40,13 @@ class PhotoWrapper extends React.Component {
 		};
 		firebase.initializeApp(config);
 		// sets Firebase as storage location
-		const storageRef = firebase.storage().ref();
+	}
 
-		this.updateCanvas(this.state.result)
-
+	handleChange(e) {
+		e.preventDefault();
+		this.setState({
+			value: e.target.value
+		})
 	}
 
 	isValidFile(data) {
@@ -44,17 +54,25 @@ class PhotoWrapper extends React.Component {
 	}
 	inputPhoto(e) {
 		const file = e.target.files[0];
-		console.log(file);
 		if (this.isValidFile(file.type)) {
-			const reader = new FileReader();
-			reader.addEventListener("load", () => {
-				this.updateCanvas(reader.result);
-				const results = reader.result;
-				this.setState({
-					result : result
+			// create a spot for the image in Firebase directory
+			const storageRef = firebase.storage().ref();
+			const newImg = storageRef.child('currentPhotos/' + file.name);
+			this.setState({
+				currentPhoto: '../../../assets/loader.gif'
+			})
+			// upload file to Firebase
+			newImg.put(file).then((snapshot) => {
+				//retrieve new url of image from Firebase
+				newImg.getDownloadURL().then((url) => {
+					console.log(url);
+					this.setState({
+						//update state to make currentPhoto URL available to canvas
+						currentPhoto: url
+					})
 				})
+				console.log('photo submitted!')
 			});
-			reader.readAsDataURL(file);
 		} else {
 			alert("Invalid file type!");
 		}
@@ -62,52 +80,80 @@ class PhotoWrapper extends React.Component {
 			photoFile: file
 		})
 	}
-
-	updateCanvas(data) {
-		const canvas = ReactDOM.findDOMNode(this.refs.myCanvas);
-		const ctx = canvas.getContext('2d');
-		let img = new Image();
-		img.src = data;
-
-		img.onload = () => {
-			canvas.width = img.width;
-			canvas.height = img.height;
-			ctx.drawImage(img, 0, 0, img.width, img.height);
-		}
+	filter1(e){
+		e.preventDefault();
+		console.log('filter1!')
+		this.setState({
+			blur: '1px',
+			saturate: '250',
+			brightness: '130',
+			sepia: '0',
+			invert:'0'
+		})
 	}
-	
+	fadedNewspaper(e){
+		console.log('faded!')
+		this.setState({
+			contrast: '60',
+			brightness: '80',
+			invert: '0',
+			saturate: '100',
+			sepia: '100',
+			blur: '',
+			greyscale: '25'
+		})
+	}
+	resetPhoto(e) {
+		e.preventDefault();
+		this.setState({
+			contrast: '100',
+			brightness: '100',
+			invert: '0',
+			blur: '0',
+			saturate: '100',
+			sepia: '0',
+		})
+	}
 
 	render(){
 		return(
 		<div className="PhotoWrapper">
-		
-			<div className="photoContainer">
-				<div id="canvasContainer">
-					<img src="" alt=""/>
-				</div>
-			</div>
-
-				<div className="photoButtons">
-					<label htmlFor="fileInput"></label>
-					<input type="file" name="fileInput" onChange={this.inputPhoto} />
-					<button onClick={this.savePhoto}type="button"className="btn--submit">Save Photo</button>
-				</div>
-
-				<div className="filter">
-					<h2>Uglify Your Photo</h2>
-					<div className="buttonContainer">
-						<button onClick={this.overlay} className="overlay btn__filter">Filter 1</button>
-						<button className="btn__filter">Filter 2</button>
-						<button className="btn__filter">Filter 3</button>
-						<button className="btn__filter">Filter 4</button>
-						<button className="btn__filter">Filter 5</button>
-						<button className="btn__filter">Filter 6</button>
-						<button className="btn__filter">Reset Photo</button>
-						<button className="btn__filter">Save Photo</button>
-						<div>
+				<div className="filterInputs">
+					<form action="">
+						<label htmlFor="fileInput"></label>
+						<input type="file" name="fileInput" onChange={this.inputPhoto} />
+						<div className="filterButtons">
+							<button onClick={this.filter1} className=" btn__filter">Filter 1</button>
+							<button className="btn__filter">Filter 2</button>
+							<button onClick={() => { this.fadedNewspaper }} className="fadedNewspaper btn__filter">Yellowed Newspaper</button>
+							<button className="btn__filter">Filter 4</button>
+							<button className="btn__filter">Filter 5</button>
+							<button className="btn__filter">Filter 6</button>
+							<button className="btn__filter">Filter 7</button>
+							<button onClick={this.resetPhoto} className="btn__filter">Reset Photo</button>
 						</div>
-					</div>
+						<button className="btn__">Save Photo</button>
+					</form>
 				</div>
+
+
+			<div className="photoContainer">
+						<img
+							src={this.state.currentPhoto}
+							alt=""
+							style={{
+								WebkitFilter:
+									`contrast(${this.state.contrast}%)` +
+									`brightness(${this.state.brightness}%)` +
+									`blur(${this.state.blur})` +
+									`invert(${this.state.invert})` +
+									`hue-rotate(${this.state.hueRotate})` +
+									`saturate(${this.state.saturate}%)` +
+									`sepia(${this.state.sepia}%)` +
+									`invert(${this.state.invert}%)`
+							}}
+						/>
+			</div>
 
 		</div>
 		)

@@ -2,48 +2,39 @@
 MAIN STYLES
 ============================================ */
 
-.wrapper{
-	width: 90%;
-	max-width: 1700px;
-	margin: 0 auto;
-}
-
 ul{
 	display:flex;
 }
 
 .PhotoWrapper{
 	display:flex;
-
 }
 
 .photoContainer{
 	width:60%;
+	display:flex;
+	justify-content: center;
+	align-items: center;
 }
 
-canvas{
-	border: 1px solid black;
+.filterInputs{
+	text-align: center;
+	border: 1px solid green;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	padding: 10px;
+}
+
+
+.filterButtons{
+	border: 1px solid yellow;
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+	justify-content: center;
 }
 
 .hidden{
 	display:none;
-}
-
-.photoButtons{
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: space-around;
-	width: 60%;
-	padding: 10px;
-	margin: 0 auto;
-}
-
-.filter{
-	width: 40%;
-}
-
-.buttonContainer{
-	display: flex;
-	flex-flow: row wrap;
 }

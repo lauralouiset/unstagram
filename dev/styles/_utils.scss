@@ -14,17 +14,16 @@ button{
 
 button:hover{
 	cursor: pointer;
-	background: lightpink;
+	background: green;
 }
 
-// input[type=file]{
-// 	display:none
-// }
 
 .btn__filter{
+	display: block;
+	min-height: 30px;
 	min-width: 100px;
 	width:40%;
-	margin: 5%;
+	margin: 20px;
 }
 
 .btn__submit{

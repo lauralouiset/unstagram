@@ -2,18 +2,22 @@
 FOOTER
 ============================================ */
 
-
-
 footer{
+	width: 100%;
 	display: flex;
-	justify-content: space-between;
-	background-color: darkgrey;
+	background-color: $accent-green;
 	padding: 10px;
+	position: fixed;
+	bottom: 0;
+	right: 0;
 }
 
 
 
 .credits{
+	border: 1px solid black;
 	display:flex;
+	justify-content: flex-end;
+	color: white;
 	align-items: center;
 }

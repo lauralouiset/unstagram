@@ -3,12 +3,14 @@ import ReactDOM from 'react-dom';
 import { render } from 'react-dom';
 import firebase from 'firebase';
 import {
-	BrowserRouter as Router,
+	BrowserRouter,
 	Route, Link
 } from 'react-router-dom';
 
 import Header from './Header';
 import PhotoWrapper from './PhotoWrapper';
+import About from './About';
+import Gallery from './Gallery';
 import Footer from './Footer';
 
 
@@ -16,26 +18,20 @@ class App extends React.Component {
 	constructor(){
 		super();
 		this.state = {
-
+				value: 0
 				}
-		this.handleChange = this.handleChange.bind(this);
 		}
-	handleChange(e){
-		e.preventDefault();
-		this.setState({
-		value: e.target.value
-		})
-	}
-
-
 	render() {
 		return (
-			<div className="wrapper">
-				<Header />
-				<PhotoWrapper
-						handleChange = {this.handleChange} />
-				<Footer />
-			</div>
+			<BrowserRouter>
+					<div>
+						<Header/>
+						<Route exact path="/" component={PhotoWrapper}/>
+						<Route path="/about" component={About}/>
+						<Route path="/" component={Gallery}/>
+						<Footer/>
+					</div>
+			</BrowserRouter>
 		)
 	}
 }
