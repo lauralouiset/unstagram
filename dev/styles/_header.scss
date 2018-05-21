@@ -3,7 +3,7 @@ HEADER
 ============================================ */
 
 header{
-	background-color: $accent-green;
+	background-color: blueviolet;
 }
 
 .header__content{
@@ -13,14 +13,3 @@ header{
 	color: white;
 }
 
-.header__text{
-	font-size: 3rem;
-}
-
-.main__nav{
-	font-family: $sans;
-	li{
-		padding: 10px;
-		font-size: 1.4rem;
-	}
-}

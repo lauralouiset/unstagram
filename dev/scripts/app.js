@@ -3,15 +3,15 @@ import ReactDOM from 'react-dom';
 import { render } from 'react-dom';
 import firebase from 'firebase';
 import {
-	BrowserRouter,
-	Route, Link
+	BrowserRouter as Router,
+	Route,
+	Link
 } from 'react-router-dom';
-
-import Header from './Header';
-import PhotoWrapper from './PhotoWrapper';
-import About from './About';
-import Gallery from './Gallery';
-import Footer from './Footer';
+import Header from './Components/Header';
+import PhotoWrapper from './Components/PhotoWrapper';
+import About from './Components/About';
+import Gallery from './Components/Gallery';
+import Footer from './Components/Footer';
 
 
 class App extends React.Component {
@@ -23,15 +23,15 @@ class App extends React.Component {
 		}
 	render() {
 		return (
-			<BrowserRouter>
+			<Router>
 					<div>
 						<Header/>
 						<Route exact path="/" component={PhotoWrapper}/>
 						<Route path="/about" component={About}/>
-						<Route path="/" component={Gallery}/>
+						<Route path="/gallery" component={Gallery}/>
 						<Footer/>
 					</div>
-			</BrowserRouter>
+			</Router>
 		)
 	}
 }

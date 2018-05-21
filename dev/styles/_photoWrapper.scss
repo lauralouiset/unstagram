@@ -10,20 +10,27 @@ ul{
 	display:flex;
 }
 
+.photoWrapper__section{
+	margin: 20px;
+}
+
 .photoContainer{
-	width:60%;
+	background: transparent;
+	width:50%;
 	display:flex;
 	justify-content: center;
 	align-items: center;
 }
 
 .filterInputs{
+	background-color: $neutral;
 	text-align: center;
 	border: 1px solid green;
 	display: flex;
 	flex-flow: column nowrap;
 	justify-content: center;
 	padding: 10px;
+	width: 45%;
 }
 
 

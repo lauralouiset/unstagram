@@ -12,9 +12,6 @@ $sans: 'Lato', sans-serif;
 
 /* ------------  BASE STYLES  ------------ */
 
-.heading{
-	font-size: 6rem;
-}
 
 h1{
 	display: inline-block;
@@ -29,4 +26,24 @@ h2{
 
 .cursive{
 	font-family: $cursive;
+}
+
+.header__bold,
+.header__cursive{
+	display:inline-block;
+	margin: 25px 0;
+}
+
+.header__logo{
+	font-size: 3rem;
+	display:flex;
+	justify-content: center;
+}
+
+.main__nav{
+	font-family: $sans;
+	li{
+		padding: 10px;
+		font-size: 1.4rem;
+	}
 }

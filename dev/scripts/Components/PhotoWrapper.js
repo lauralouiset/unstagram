@@ -92,6 +92,7 @@ class PhotoWrapper extends React.Component {
 		})
 	}
 	fadedNewspaper(e){
+		e.preventDefault();
 		console.log('faded!')
 		this.setState({
 			contrast: '60',
@@ -103,6 +104,7 @@ class PhotoWrapper extends React.Component {
 			greyscale: '25'
 		})
 	}
+	
 	resetPhoto(e) {
 		e.preventDefault();
 		this.setState({
@@ -118,14 +120,14 @@ class PhotoWrapper extends React.Component {
 	render(){
 		return(
 		<div className="PhotoWrapper">
-				<div className="filterInputs">
+				<div className="photoWrapper__section filterInputs">
 					<form action="">
 						<label htmlFor="fileInput"></label>
 						<input type="file" name="fileInput" onChange={this.inputPhoto} />
 						<div className="filterButtons">
-							<button onClick={this.filter1} className=" btn__filter">Filter 1</button>
+							<button onClick={this.filter1} className="btn__filter">Filter 1</button>
 							<button className="btn__filter">Filter 2</button>
-							<button onClick={() => { this.fadedNewspaper }} className="fadedNewspaper btn__filter">Yellowed Newspaper</button>
+							<button onClick={this.fadedNewspaper} className="fadedNewspaper btn__filter">Yellowed Newspaper</button>
 							<button className="btn__filter">Filter 4</button>
 							<button className="btn__filter">Filter 5</button>
 							<button className="btn__filter">Filter 6</button>
@@ -137,7 +139,7 @@ class PhotoWrapper extends React.Component {
 				</div>
 
 
-			<div className="photoContainer">
+			<div className="photoWrapper__section photoContainer">
 						<img
 							src={this.state.currentPhoto}
 							alt=""

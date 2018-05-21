@@ -3,16 +3,15 @@ FOOTER
 ============================================ */
 
 footer{
+	border: 1px solid hotpink;
 	width: 100%;
 	display: flex;
-	background-color: $accent-green;
+	background-color: blueviolet;
 	padding: 10px;
 	position: fixed;
 	bottom: 0;
 	right: 0;
 }
-
-
 
 .credits{
 	border: 1px solid black;
