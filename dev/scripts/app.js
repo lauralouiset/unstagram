@@ -2,23 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { render } from 'react-dom';
 import firebase from 'firebase';
-// import { Stage, Layer, Rect, Text } from 'react-konva';
-// import konva from 'Konva';
+import {
+	BrowserRouter as Router,
+	Route, Link
+} from 'react-router-dom';
+
 import Header from './Header';
 import PhotoWrapper from './PhotoWrapper';
 import Footer from './Footer';
 
-var config = {
-	apiKey: "AIzaSyARNtT04asipwsNU6H_OqvJ4NUmGXl95bQ",
-	authDomain: "uglygram-666.firebaseapp.com",
-	databaseURL: "https://uglygram-666.firebaseio.com",
-	projectId: "uglygram-666",
-	storageBucket: "uglygram-666.appspot.com",
-	messagingSenderId: "351785856531"
-};
-firebase.initializeApp(config);
-// sets Firebase as storage location
-const storageRef = firebase.storage().ref();
 
 class App extends React.Component {
 	constructor(){
@@ -26,10 +18,7 @@ class App extends React.Component {
 		this.state = {
 
 				}
-
 		this.handleChange = this.handleChange.bind(this);
-
-		// this.submitPhoto = this.submitPhoto.bind(this);
 		}
 	handleChange(e){
 		e.preventDefault();

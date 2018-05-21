@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import firebase from 'firebase';
-import { Stage, Layer, Rect, Text } from 'react-konva';
-import Filters from './Filters';
-
+import {
+	BrowserRouter as Router,
+	Route, Link
+} from 'react-router-dom';
 
 
 class PhotoWrapper extends React.Component {
@@ -13,26 +14,46 @@ class PhotoWrapper extends React.Component {
 		this.validTypes = ['image/png', 'image/jpg', 'image/gif', 'image/jpeg'];
 		this.state = {
 			photoFile: '',
-			canvasWidth: 50,
-			canvasHeight: 50,
-			effect: function(){},
-			data : '',
+			dataURL: '',
+			result: '',
+
 		}
 		this.overlay = this.overlay.bind(this);
 		this.inputPhoto = this.inputPhoto.bind(this);
-		this.displayPhoto = this.displayPhoto(this);
+		this.updateCanvas = this.updateCanvas.bind(this);
 	}
+	componentDidMount(){
+		const config = {
+			apiKey: "AIzaSyARNtT04asipwsNU6H_OqvJ4NUmGXl95bQ",
+			authDomain: "uglygram-666.firebaseapp.com",
+			databaseURL: "https://uglygram-666.firebaseio.com",
+			projectId: "uglygram-666",
+			storageBucket: "uglygram-666.appspot.com",
+			messagingSenderId: "351785856531"
+		};
+		firebase.initializeApp(config);
+		// sets Firebase as storage location
+		const storageRef = firebase.storage().ref();
+
+		this.updateCanvas(this.state.result)
+
+	}
+
 	isValidFile(data) {
 		return (this.validTypes.indexOf(data) !== -1) ? true : false;
 	}
-	inputPhoto(e){
+	inputPhoto(e) {
 		const file = e.target.files[0];
 		console.log(file);
-		if (this.isValidFile(file.type)){
+		if (this.isValidFile(file.type)) {
 			const reader = new FileReader();
 			reader.addEventListener("load", () => {
-				this.displayPhoto(reader.result);
-				});
+				this.updateCanvas(reader.result);
+				const results = reader.result;
+				this.setState({
+					result : result
+				})
+			});
 			reader.readAsDataURL(file);
 		} else {
 			alert("Invalid file type!");
@@ -42,7 +63,7 @@ class PhotoWrapper extends React.Component {
 		})
 	}
 
-	displayPhoto(data){
+	updateCanvas(data) {
 		const canvas = ReactDOM.findDOMNode(this.refs.myCanvas);
 		const ctx = canvas.getContext('2d');
 		let img = new Image();
@@ -52,27 +73,41 @@ class PhotoWrapper extends React.Component {
 			canvas.width = img.width;
 			canvas.height = img.height;
 			ctx.drawImage(img, 0, 0, img.width, img.height);
-			}
+		}
 	}
+	
+
 	render(){
 		return(
 		<div className="PhotoWrapper">
+		
 			<div className="photoContainer">
 				<div id="canvasContainer">
-						<canvas ref="myCanvas"></canvas>
+					<img src="" alt=""/>
+				</div>
 			</div>
 
 				<div className="photoButtons">
 					<label htmlFor="fileInput"></label>
 					<input type="file" name="fileInput" onChange={this.inputPhoto} />
-					<button type="button"className="btn--submit">Save Photo</button>
-
+					<button onClick={this.savePhoto}type="button"className="btn--submit">Save Photo</button>
 				</div>
-			</div>
 
-			<Filters 
-			overlay = {this.overlay}
-			/>
+				<div className="filter">
+					<h2>Uglify Your Photo</h2>
+					<div className="buttonContainer">
+						<button onClick={this.overlay} className="overlay btn__filter">Filter 1</button>
+						<button className="btn__filter">Filter 2</button>
+						<button className="btn__filter">Filter 3</button>
+						<button className="btn__filter">Filter 4</button>
+						<button className="btn__filter">Filter 5</button>
+						<button className="btn__filter">Filter 6</button>
+						<button className="btn__filter">Reset Photo</button>
+						<button className="btn__filter">Save Photo</button>
+						<div>
+						</div>
+					</div>
+				</div>
 
 		</div>
 		)

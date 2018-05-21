@@ -31,6 +31,8 @@
     "firebase": "^5.0.2",
     "konva": "^2.1.3",
     "node-sass": "^4.7.1",
-    "react-konva": "^1.7.3"
+    "react-konva": "^1.7.3",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2"
   }
 }
