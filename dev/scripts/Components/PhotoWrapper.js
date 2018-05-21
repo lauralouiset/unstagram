@@ -15,17 +15,22 @@ class PhotoWrapper extends React.Component {
 		this.state = {
 			currentPhoto: '../../../assets/placeholder.jpg',
 			blur: '0',
-			contrast: '100',
 			brightness: '100',
-			invert: '0',
+			contrast: '100',
+			grayscale: '0',
 			hueRotate: '0',
+			invert: '0',
 			saturate: '100',
-			sepia: '0',
-
+			sepia: '0'
 		}
 		this.inputPhoto = this.inputPhoto.bind(this);
-		this.filter1 = this.filter1.bind(this);
+		this.shakyCamera = this.shakyCamera.bind(this);
 		this.fadedNewspaper = this.fadedNewspaper.bind(this);
+		this.fluorescent = this.fluorescent.bind(this);
+		this.badFlash = this.badFlash.bind(this);
+		this.fake1970s = this.fake1970s.bind(this);
+		this.acidTrip = this.acidTrip.bind(this);
+		this.xRay = this.xRay.bind(this);
 		this.resetPhoto = this.resetPhoto.bind(this);
 
 	}
@@ -65,7 +70,6 @@ class PhotoWrapper extends React.Component {
 			newImg.put(file).then((snapshot) => {
 				//retrieve new url of image from Firebase
 				newImg.getDownloadURL().then((url) => {
-					console.log(url);
 					this.setState({
 						//update state to make currentPhoto URL available to canvas
 						currentPhoto: url
@@ -77,43 +81,124 @@ class PhotoWrapper extends React.Component {
 			alert("Invalid file type!");
 		}
 		this.setState({
-			photoFile: file
+			photoFile: file,
+			blur: '0',
+			brightness: '100',
+			contrast: '100',
+			grayscale: '0',
+			hueRotate: '0',
+			invert: '0',
+			saturate: '100',
+			sepia: '0'
 		})
 	}
-	filter1(e){
+	shakyCamera(e){
 		e.preventDefault();
-		console.log('filter1!')
+		console.log('shakyCamera!')
 		this.setState({
-			blur: '1px',
+			contrast: '100',
+			blur: '1',
 			saturate: '250',
 			brightness: '130',
 			sepia: '0',
 			invert:'0'
 		})
 	}
+	fluorescent(e){
+		e.preventDefault();
+		console.log(`fluorescent!`)
+		this.setState({
+			blur: '0',
+			brightness: '100',
+			contrast: '89',
+			grayscale: '0',
+			hueRotate: '25',
+			invert: '0',
+			saturate: '61',
+			sepia: '0'
+		})
+	}
 	fadedNewspaper(e){
 		e.preventDefault();
 		console.log('faded!')
 		this.setState({
-			contrast: '60',
+			blur: '0',
 			brightness: '80',
+			contrast: '90',
+			grayscale: '40',
+			hueRotate: '0',
 			invert: '0',
 			saturate: '100',
-			sepia: '100',
-			blur: '',
-			greyscale: '25'
+			sepia: '100'
 		})
 	}
-	
+	badFlash(e){
+		e.preventDefault();
+		console.log('badFlash!')
+		this.setState({
+			blur: '0',
+			brightness: '120',
+			contrast: '160',
+			grayscale: '0',
+			hueRotate: '0',
+			invert: '0',
+			saturate: '130',
+			sepia: '15'
+		})
+	}
+	fake1970s(e) {
+		e.preventDefault();
+		console.log('fake1970s!')
+		this.setState({
+			blur: '0',
+			brightness: '100',
+			contrast: '75',
+			grayscale: '0',
+			hueRotate: '0',
+			invert: '0',
+			saturate: '200',
+			sepia: '50'
+		})
+	}
+	acidTrip(e) {
+		e.preventDefault();
+		console.log('acidtrip!')
+		this.setState({
+			blur: '0',
+			brightness: '100',
+			contrast: '100',
+			grayscale: '0',
+			hueRotate: '212',
+			invert: '0',
+			saturate: '150',
+			sepia: '0'
+		})
+	}
+	xRay(e) {
+		e.preventDefault();
+		console.log('xray!')
+		this.setState({
+			blur: '0',
+			brightness: '90',
+			contrast: '100',
+			grayscale: '0',
+			hueRotate: '0',
+			invert: '100',
+			saturate: '130',
+			sepia: '0'
+		})
+	}
 	resetPhoto(e) {
 		e.preventDefault();
 		this.setState({
-			contrast: '100',
-			brightness: '100',
-			invert: '0',
 			blur: '0',
+			brightness: '100',
+			contrast: '100',
+			grayscale: '0',
+			hueRotate: '0',
+			invert: '0',
 			saturate: '100',
-			sepia: '0',
+			sepia: '0'
 		})
 	}
 
@@ -125,14 +210,14 @@ class PhotoWrapper extends React.Component {
 						<label htmlFor="fileInput"></label>
 						<input type="file" name="fileInput" onChange={this.inputPhoto} />
 						<div className="filterButtons">
-							<button onClick={this.filter1} className="btn__filter">Filter 1</button>
-							<button className="btn__filter">Filter 2</button>
-							<button onClick={this.fadedNewspaper} className="fadedNewspaper btn__filter">Yellowed Newspaper</button>
-							<button className="btn__filter">Filter 4</button>
-							<button className="btn__filter">Filter 5</button>
-							<button className="btn__filter">Filter 6</button>
-							<button className="btn__filter">Filter 7</button>
-							<button onClick={this.resetPhoto} className="btn__filter">Reset Photo</button>
+							<button onClick={this.shakyCamera} className="shakyCamera btn__filter">Shaky Camera</button>
+							<button onClick={this.fluorescent} className="fluorescent btn__filter">Fluorescent Lighting</button>
+							<button onClick={this.fadedNewspaper} className="fadedNewspaper btn__filter">Faded Newspaper</button>
+							<button onClick={this.badFlash} className="badFlash btn__filter">Bad Flash</button>
+							<button onClick={this.fake1970s} className="fake1970s btn__filter">Fake 1970s</button>
+							<button onClick={this.acidTrip} className="acidTrip btn__filter">Acid Trip</button>
+							<button onClick={this.xRay} className="xRay btn__filter">X-Ray</button>
+							<button onClick={this.resetPhoto} className="btn__filter">Start Over</button>
 						</div>
 						<button className="btn__">Save Photo</button>
 					</form>
@@ -140,19 +225,19 @@ class PhotoWrapper extends React.Component {
 
 
 			<div className="photoWrapper__section photoContainer">
-						<img
+						<img className="unstagramImage"
 							src={this.state.currentPhoto}
-							alt=""
+							alt="Photo Edited with Unstagram"
 							style={{
 								WebkitFilter:
-									`contrast(${this.state.contrast}%)` +
+									`blur(${this.state.blur}px)` +
 									`brightness(${this.state.brightness}%)` +
-									`blur(${this.state.blur})` +
-									`invert(${this.state.invert})` +
-									`hue-rotate(${this.state.hueRotate})` +
+									`contrast(${this.state.contrast}%)` +
+									`grayscale(${this.state.grayscale}%)` +
+									`hue-rotate(${this.state.hueRotate}deg)` +
+									`invert(${this.state.invert}%)` +
 									`saturate(${this.state.saturate}%)` +
-									`sepia(${this.state.sepia}%)` +
-									`invert(${this.state.invert}%)`
+									`sepia(${this.state.sepia}%)` 
 							}}
 						/>
 			</div>
