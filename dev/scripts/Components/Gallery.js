@@ -5,6 +5,7 @@ import {
 	Route, Link
 } from 'react-router-dom';
 
+
 class Gallery extends React.Component{
 	constructor(){
 		super();
@@ -12,22 +13,24 @@ class Gallery extends React.Component{
 			photoCollection: []
 		}
 	};
-	componentDidMount(){
-		const galleryRef = firebase.database.ref('/');
-		galleryRef.on(value, (snapshot) => {
-			const pastPhotos = snapshot.val();
-			const photoDetails = [];
-				for(let key in pastPhotos){
-					photoDetails.push({
-						ey: key,
-						singleData: pastPhotos[key]
-					})
-				}
-				this.setState({
-					photoDetails
-				})
-		} )
-	}
+	// componentDidMount(){
+
+
+	// 	const dbRef = firebase.database.ref('/');
+	// 	dbRef.on(value, (snapshot) => {
+	// 		const pastPhotos = snapshot.val();
+	// 		const photoDetails = [];
+	// 			for(let key in pastPhotos){
+	// 				photoDetails.push({
+	// 					ey: key,
+	// 					singleData: pastPhotos[key]
+	// 				})
+	// 			}
+	// 			this.setState({
+	// 				photoDetails
+	// 			})
+	// 	} )
+	// }
 	render(){
 		return(
 			<div className="gallery">

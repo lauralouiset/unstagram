@@ -13,7 +13,7 @@ class PhotoWrapper extends React.Component {
 		super();
 		this.validTypes = ['image/png', 'image/jpg', 'image/gif', 'image/jpeg'];
 		this.state = {
-			currentPhoto: '../../../assets/placeholder.jpg',
+			currentPhoto: '../../../assets/towelpug.jpg',
 			blur: '0',
 			brightness: '100',
 			contrast: '100',
@@ -64,7 +64,7 @@ class PhotoWrapper extends React.Component {
 			const storageRef = firebase.storage().ref();
 			const newImg = storageRef.child('currentPhotos/' + file.name);
 			this.setState({
-				currentPhoto: '../../../assets/loader.gif'
+				currentPhoto: '../../../assets/loader.svg'
 			})
 			// upload file to Firebase
 			newImg.put(file).then((snapshot) => {
