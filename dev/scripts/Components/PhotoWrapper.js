@@ -12,7 +12,7 @@ class PhotoWrapper extends React.Component {
 		super();
 		this.validTypes = ['image/png', 'image/jpg', 'image/gif', 'image/jpeg'];
 		this.state = {
-			currentPhoto: '../../../assets/towelpug.jpg',
+			currentPhoto: '../Assets/towelpug.jpg',
 			blur: '0',
 			brightness: '100',
 			contrast: '100',
@@ -51,7 +51,7 @@ class PhotoWrapper extends React.Component {
 			const storageRef = firebase.storage().ref();
 			const newImg = storageRef.child('currentPhotos/' + file.name);
 			this.setState({
-				currentPhoto: '../../../assets/loader.svg'
+				currentPhoto: '../Assets/loader.svg'
 			})
 			// upload file to Firebase
 			newImg.put(file).then((snapshot) => {
@@ -62,7 +62,6 @@ class PhotoWrapper extends React.Component {
 						currentPhoto: url
 					})
 				})
-				console.log('photo submitted!')
 			});
 		} else {
 			alert("I can't UNstagram that! Please try a .jpg or .png!");
@@ -82,12 +81,14 @@ class PhotoWrapper extends React.Component {
 	shakyCamera(e){
 		e.preventDefault();
 		this.setState({
-			contrast: '100',
 			blur: '1',
-			saturate: '250',
 			brightness: '130',
+			contrast: '100',
+			grayscale: '0',
+			hueRotate: '25',
+			invert: '0',
+			saturate: '250',
 			sepia: '0',
-			invert:'0'
 		})
 	}
 	fluorescent(e){

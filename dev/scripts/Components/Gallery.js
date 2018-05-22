@@ -29,7 +29,6 @@ class Gallery extends React.Component{
 				this.setState({
 					photoCollection: pastPhotos
 				})
-				console.log(this.state.photoCollection);
 		} )
 	}
 		render(){
@@ -38,15 +37,13 @@ class Gallery extends React.Component{
 				<h2 className="section__header">UN<span className="cursive section__cursive">stagram</span> Hall of Fame!</h2>
 				<p>Gallery Under Construction!</p>
 					<div className="photoGallery">
-					<img className="galleryImage"src="tonguedog.jpg" alt=""/>
 						{this.state.photoCollection.map((photoItem) => {
 							const filter = photoItem.filterData;
-							console.log(filter);
 								return(
 									<div className="galleryImage" key={photoItem.key}>
-									<img  src="{filter.url}" alt="Photo edited with Unstagram"
+									<img  src={filter.url} alt="Photo edited with Unstagram"
 									style={{WebkitFilter:
-										`blur(${filter.contrast}px)` +
+										`blur(${filter.blur}px)` +
 										`brightness(${filter.brightness}%)` +
 										`contrast(${filter.contrast}%)` +
 										`grayscale(${filter.grayscale}%)` +
