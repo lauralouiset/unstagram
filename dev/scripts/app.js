@@ -27,8 +27,8 @@ class App extends React.Component {
 					<div>
 						<Header/>
 						<Route exact path="/" component={PhotoWrapper}/>
-						<Route path="/" component={About}/>
-						<Route path="/" component={Gallery}/>
+						<Route path="/about" component={About}/>
+						<Route path="/gallery" component={Gallery}/>
 						<Footer/>
 					</div>
 			</Router>

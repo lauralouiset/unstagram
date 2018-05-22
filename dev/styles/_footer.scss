@@ -10,6 +10,9 @@ footer{
 	position: fixed;
 	bottom: 0;
 	right: 0;
+			@include mq(sm){
+			justify-content: center;
+		}
 }
 
 .credits{
@@ -21,7 +24,12 @@ footer{
 	font-size:1.5rem;
 	letter-spacing: 1px;
 	ul{
+		display: flex;
 		margin-left: auto;
+
+		@include mq(sm){
+			margin: 0 auto;
+		}
 	}
 	li{
 		font-size: 2.5rem;
@@ -37,5 +45,10 @@ footer{
 	}
 	a:hover{
 		color: $accent-blue;
+	}
+	@include mq(sm){
+		flex-direction: column;
+		padding-bottom: 10px;
+
 	}
 }

@@ -5,7 +5,7 @@ TYPOGRAPHY STYLES
 /* ------------  FONT VARIABLES  ------------ */
 
 $cursive: 'Sacramento', cursive;
-$heading: 'Fjalla One', sans-serif;
+$heading: 'Lato', sans-serif;
 $sans: 'Lato', sans-serif;
 
 
@@ -21,7 +21,13 @@ h1{
 h2{
 	text-align: center;
 	font-family: $heading;
+	font-weight: 900;
 }
+
+	p {
+		font-family: $sans;
+		font-size: 1.6rem;
+	}
 
 .cursive{
 	font-family: $cursive;
@@ -42,7 +48,6 @@ h2{
 .main__nav{
 	font-family: $sans;
 	li{
-		padding: 15px;
 		font-size: 1.8rem;
 	a{
 		color:inherit;
@@ -52,4 +57,13 @@ h2{
 		color: $accent-blue;
 	}
 	}
+}
+.section__header{
+	font-family: $heading;
+	font-weight: 700;
+	font-size:3rem;
+}
+
+.section__cursive{
+	font-size:4rem;
 }

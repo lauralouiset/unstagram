@@ -107,8 +107,8 @@ class PhotoWrapper extends React.Component {
 		e.preventDefault();
 		this.setState({
 			blur: '0',
-			brightness: '100',
-			contrast: '89',
+			brightness: '130',
+			contrast: '80',
 			grayscale: '0',
 			hueRotate: '25',
 			invert: '0',
@@ -120,8 +120,8 @@ class PhotoWrapper extends React.Component {
 		e.preventDefault();
 		this.setState({
 			blur: '0',
-			brightness: '80',
-			contrast: '90',
+			brightness: '60',
+			contrast: '80',
 			grayscale: '40',
 			hueRotate: '0',
 			invert: '0',
@@ -159,12 +159,12 @@ class PhotoWrapper extends React.Component {
 		e.preventDefault();
 		this.setState({
 			blur: '0',
-			brightness: '100',
-			contrast: '100',
+			brightness: '110',
+			contrast: '1110',
 			grayscale: '0',
 			hueRotate: '212',
 			invert: '0',
-			saturate: '150',
+			saturate: '300',
 			sepia: '0'
 		})
 	}

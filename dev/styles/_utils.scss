@@ -22,7 +22,7 @@ button:hover{
 	display: block;
 	min-height: 40px;
 	min-width: 100px;
-	width:40%;
+	width:48%;
 	margin: 10px 0;
 	padding: 20px;
 }
@@ -32,8 +32,9 @@ button:hover{
 	@extend button;
 	display: block;
 	margin: 0 auto;
-	width: 90%;
+	width: 100%;
 	padding: 10px;
+	margin: 10px 0;
 }
 
 .fileInput{

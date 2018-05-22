@@ -14,5 +14,22 @@ header{
 	justify-content: space-between;
 	color: white;
 	padding: 0 5%;
+	ul{
+	display:flex;
+		@include mq(sm){
+			justify-content: space-between;
+		}
+	
 }
 
+	@include mq(sm){
+		flex-direction: column;
+	}
+}
+
+
+
+.main__nav li{
+	padding: 30px;
+
+}

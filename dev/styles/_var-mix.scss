@@ -14,10 +14,7 @@ RESPONSIVE MIXINS
 // Breakpoints 
 
 $sm: 600px;
-$med: 800px;
-$lg: 960px;
-$xl: 1200px;
-
+$med: 750px;
 
 // Media Queries
 
@@ -32,14 +29,5 @@ $xl: 1200px;
 		@content;
 	}
     } 
-    @else if $break == 'lg'{
-		@media(max-width: $lg){
-		@content;
-			}
-    }
-    @else if $break == 'xl'{
-		@media(max-width: $xl){
-		@content;
-			}
-		}
+
 }

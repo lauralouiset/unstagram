@@ -9,13 +9,10 @@ ABOUT SECTION
 	box-shadow: 2px 2px 2px $darkshade;
 	color: $darkshade;
 	padding: 30px;
-	p{
-		font-family: $sans;
-		font-size: 1.6rem;
+
+	@include mq(med){
+		width: 90%
 	}
 }
 
-.about__header{
-	font-family: $heading;
 
-}

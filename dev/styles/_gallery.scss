@@ -13,9 +13,16 @@ GALLERY
 		font-family: $sans;
 		font-size: 1.6rem;
 	}
+		@include mq(med){
+		flex-direction:column;
+		margin-bottom: 80px;
+	}
+	@include mq(sm){
+		margin-bottom: 120px;
+	}
 }
 
-.about__header{
+.section__header{
 	font-family: $heading;
 
 }

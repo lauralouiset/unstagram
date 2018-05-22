@@ -2,12 +2,18 @@
 MAIN STYLES
 ============================================ */
 
-ul{
-	display:flex;
-}
+
 
 .PhotoWrapper{
 	display:flex;
+	flex-direction:row nowrap;
+	@include mq(med){
+		flex-direction:column;
+		margin-bottom: 80px;
+	}
+	@include mq(sm){
+		margin-bottom: 120px;
+	}
 }
 
 .photoWrapper__section{
@@ -16,29 +22,37 @@ ul{
 
 .photoContainer{
 	background: transparent;
-	width:50%;
+	width:55%;
 	display:flex;
 	justify-content: center;
 	align-items: center;
+	@include mq(med){
+		order: 1;
+		width: 90%;
+		margin: 0 auto;
+	}
 }
 
 .filterInputs{
-	background-color: white;
+	background-color: transparent;
 	text-align: center;
 	display: flex;
 	flex-flow: column nowrap;
-	justify-content: center;
-	padding: 10px;
-	width: 45%;
+	width: 40%;
+	flex-shrink:2;
+		@include mq(med){
+		order: 2;
+		width: 90%;
+		margin: 0 auto;
+	}
 }
 
 .filterButtons{
 	display: flex;
 	flex-flow: row wrap;
-	align-items: space-around;
-	justify-content: space-around;
+	align-items: space-between;
+	justify-content: space-between;
 }
-
 
 .unstagramImage{
 	max-height: 550px;
