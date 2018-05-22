@@ -1,0 +1,21 @@
+/* =========================================
+ABOUT SECTION
+============================================ */
+
+.about{
+	margin: 30px auto;
+	width: 60%;
+	background-color: rgba(255, 255, 255, 1);
+	box-shadow: 2px 2px 2px $darkshade;
+	color: $darkshade;
+	padding: 30px;
+	p{
+		font-family: $sans;
+		font-size: 1.6rem;
+	}
+}
+
+.about__header{
+	font-family: $heading;
+
+}

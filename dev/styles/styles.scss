@@ -10,6 +10,8 @@ Hacker You Web Development Bootcamp
 
 @import 'header';
 @import 'photoWrapper';
+@import 'about';
+@import 'gallery';
 @import 'footer';
 
 /* ------------  BASE  ------------ */
@@ -41,3 +43,8 @@ ol{
 	max-width: 1400px;
 	margin: 0 auto;
 }
+
+body{
+	background-color:#f45c43;
+}
+

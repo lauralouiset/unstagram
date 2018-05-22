@@ -10,11 +10,13 @@ const Footer = () => {
 		<footer>
 
 		<div className="wrapper credits">
-			<p>Built by <a href="http://laura.loui.se"><span className="cursive">Laura-Louise</span></a></p>
+				<p> Built in 2018 by<span className="cursive">Laura-Louise</span></p>
 			<ul className="footer__socialmedia">
-				<li><a href="http://www.twitter.com/fakelauralouise">Twitter</a></li>
-				<li><a href="http://www.linkedin.com">LinkedIn</a></li>
-				<li><a href="mailto: lauralouise@lauraloui.se">Email</a></li>
+					<li><a href="http://laura.loui.se"><i className="fas fa-desktop"></i></a></li>
+					<li><a href="mailto: lauralouise@lauraloui.se"><i className="far fa-envelope"></i></a></li>
+					<li><a href="https://www.twitter.com/fakelauralouise"><i className="fab fa-twitter"></i></a></li>
+					<li><a href="https://www.linkedin.com/in/laura-louise-tobin/"><i className="fab fa-linkedin-in"></i></a></li>
+				
 			</ul>
 		</div>
 

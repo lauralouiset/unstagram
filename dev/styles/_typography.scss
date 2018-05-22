@@ -19,7 +19,6 @@ h1{
 }
 
 h2{
-	text-transform: uppercase;
 	text-align: center;
 	font-family: $heading;
 }
@@ -31,7 +30,7 @@ h2{
 .header__bold,
 .header__cursive{
 	display:inline-block;
-	margin: 25px 0;
+	margin: 15px 0;
 }
 
 .header__logo{
@@ -43,7 +42,14 @@ h2{
 .main__nav{
 	font-family: $sans;
 	li{
-		padding: 10px;
-		font-size: 1.4rem;
+		padding: 15px;
+		font-size: 1.8rem;
+	a{
+		color:inherit;
+		transition: color 0.3s ease-in-out
+	}
+	a:hover{
+		color: $accent-blue;
+	}
 	}
 }

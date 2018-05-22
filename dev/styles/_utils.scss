@@ -4,28 +4,42 @@ UTILS
 
 button{
 	font-family: $sans;
-	border: 1px solid black;
+	border: 1px solid $darkshade;;
 	border-radius:0px;
-
-	box-shadow: 2px 2px 2px black;
+	box-shadow: 2px 2px 2px $darkshade;
+	text-transform: uppercase;
+	font-size: 1.4rem;
+	position:relative;
+	overflow: hidden;
 	background: white;
-	padding: 10px;
 }
 
 button:hover{
 	cursor: pointer;
-	background: green;
 }
-
 
 .btn__filter{
 	display: block;
-	min-height: 30px;
+	min-height: 40px;
 	min-width: 100px;
 	width:40%;
-	margin: 20px;
+	margin: 10px 0;
+	padding: 20px;
 }
 
-.btn__submit{
-	color: black;
+
+.btn__utility{
+	@extend button;
+	display: block;
+	margin: 0 auto;
+	width: 90%;
+	padding: 10px;
+}
+
+.fileInput{
+display:block;
+text-align: center;
+width: 0.1px;
+height: 0.1px;
+overflow:hidden;
 }

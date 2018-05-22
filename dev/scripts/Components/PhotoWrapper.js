@@ -32,6 +32,7 @@ class PhotoWrapper extends React.Component {
 		this.acidTrip = this.acidTrip.bind(this);
 		this.xRay = this.xRay.bind(this);
 		this.resetPhoto = this.resetPhoto.bind(this);
+		this.savePhoto = this.savePhoto.bind(this);
 
 	}
 	componentDidMount(){
@@ -44,7 +45,6 @@ class PhotoWrapper extends React.Component {
 			messagingSenderId: "351785856531"
 		};
 		firebase.initializeApp(config);
-		// sets Firebase as storage location
 	}
 
 	handleChange(e) {
@@ -78,7 +78,7 @@ class PhotoWrapper extends React.Component {
 				console.log('photo submitted!')
 			});
 		} else {
-			alert("Invalid file type!");
+			alert("I can't UNstagram that! Please try a .jpg or .png!");
 		}
 		this.setState({
 			photoFile: file,
@@ -94,7 +94,6 @@ class PhotoWrapper extends React.Component {
 	}
 	shakyCamera(e){
 		e.preventDefault();
-		console.log('shakyCamera!')
 		this.setState({
 			contrast: '100',
 			blur: '1',
@@ -106,7 +105,6 @@ class PhotoWrapper extends React.Component {
 	}
 	fluorescent(e){
 		e.preventDefault();
-		console.log(`fluorescent!`)
 		this.setState({
 			blur: '0',
 			brightness: '100',
@@ -120,7 +118,6 @@ class PhotoWrapper extends React.Component {
 	}
 	fadedNewspaper(e){
 		e.preventDefault();
-		console.log('faded!')
 		this.setState({
 			blur: '0',
 			brightness: '80',
@@ -134,7 +131,6 @@ class PhotoWrapper extends React.Component {
 	}
 	badFlash(e){
 		e.preventDefault();
-		console.log('badFlash!')
 		this.setState({
 			blur: '0',
 			brightness: '120',
@@ -148,7 +144,6 @@ class PhotoWrapper extends React.Component {
 	}
 	fake1970s(e) {
 		e.preventDefault();
-		console.log('fake1970s!')
 		this.setState({
 			blur: '0',
 			brightness: '100',
@@ -162,7 +157,6 @@ class PhotoWrapper extends React.Component {
 	}
 	acidTrip(e) {
 		e.preventDefault();
-		console.log('acidtrip!')
 		this.setState({
 			blur: '0',
 			brightness: '100',
@@ -176,7 +170,6 @@ class PhotoWrapper extends React.Component {
 	}
 	xRay(e) {
 		e.preventDefault();
-		console.log('xray!')
 		this.setState({
 			blur: '0',
 			brightness: '90',
@@ -201,14 +194,34 @@ class PhotoWrapper extends React.Component {
 			sepia: '0'
 		})
 	}
+	savePhoto(e){
+		e.preventDefault();
+
+		const photoDetails = {
+			url: this.state.currentPhoto,
+			blur: this.state.blur,
+			brightness: this.state.brightness,
+			contrast: this.state.contrast,
+			grayscale: this.state.grayscale,
+			hueRotate: this.state.hueRotate,
+			invert: this.state.invert,
+			saturate: this.state.saturate,
+			sepia: this.state.sepia
+		}
+		const galleryRef = firebase.database().ref('/');
+		galleryRef.push(photoDetails);
+		alert('Your photo has been sent to the UNstagram Hall of Shame!')
+		
+
+	}
 
 	render(){
 		return(
 		<div className="PhotoWrapper">
 				<div className="photoWrapper__section filterInputs">
 					<form action="">
-						<label htmlFor="fileInput"></label>
-						<input type="file" name="fileInput" onChange={this.inputPhoto} />
+						<input id="fileInput" type="file" className="fileInput" name="fileInput" onChange={this.inputPhoto} />
+						<label className="btn__utility" htmlFor="fileInput">Upload Your Photo</label>
 						<div className="filterButtons">
 							<button onClick={this.shakyCamera} className="shakyCamera btn__filter">Shaky Camera</button>
 							<button onClick={this.fluorescent} className="fluorescent btn__filter">Fluorescent Lighting</button>
@@ -219,7 +232,10 @@ class PhotoWrapper extends React.Component {
 							<button onClick={this.xRay} className="xRay btn__filter">X-Ray</button>
 							<button onClick={this.resetPhoto} className="btn__filter">Start Over</button>
 						</div>
-						<button className="btn__">Save Photo</button>
+						</form >
+
+						<form className="saveForm" onSubmit={this.savePhoto}>
+							<button type="submit "className="btn__utility">Save in UNstagram gallery!</button>
 					</form>
 				</div>
 
