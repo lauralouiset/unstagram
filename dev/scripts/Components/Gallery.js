@@ -5,7 +5,6 @@ import {
 	Route, Link
 } from 'react-router-dom';
 
-
 class Gallery extends React.Component{
 	constructor(){
 		super();
@@ -14,32 +13,38 @@ class Gallery extends React.Component{
 		}
 	};
 	componentDidMount(){
-		const dbRef = firebase.database.ref('/');
-		dbRef.on(value, (snapshot) => {
-			const pastPhotos = snapshot.val();
-			const photoDetails = [];
-				for(let key in pastPhotos){
-					photoDetails.push({
-						key: key,
-						singleData: pastPhotos[key]
-					})
-				}
-				this.setState({
-					photoCollection: photoDetails
+
+		const dbRef = firebase.database().ref('/');
+		dbRef.on('value', (snapshot) => {
+			const data = snapshot.val();
+			const pastPhotos = [];
+			for (let item in data) {
+				// const itemKey = data[item].key;
+				const itemKey = item;
+				pastPhotos.push({
+					key: itemKey,
+					filterData: data[item]
 				})
+			}
+				this.setState({
+					photoCollection: pastPhotos
+				})
+				console.log(this.state.photoCollection);
 		} )
 	}
-	render(){
+		render(){
 		return(
 			<div className="gallery">
-				<h2 className="section__header">UN<span className="cursive section__cursive">stagram</span> Hall of Shame!</h2>
-				<p>See our favourite past uglies! Why Instagram when you can UNstagram?</p>
-					<ul className="photoGallery">
-						{this.state.photoCollection.map((singlePhoto) => {
-							const filter = singlePhoto.Collection
+				<h2 className="section__header">UN<span className="cursive section__cursive">stagram</span> Hall of Fame!</h2>
+				<p>Gallery Under Construction!</p>
+					<div className="photoGallery">
+					<img className="galleryImage"src="tonguedog.jpg" alt=""/>
+						{this.state.photoCollection.map((photoItem) => {
+							const filter = photoItem.filterData;
+							console.log(filter);
 								return(
-									<li key="singlePhoto">
-									<img src="{filter.url}" alt="Photo edited with Unstagram"
+									<div className="galleryImage" key={photoItem.key}>
+									<img  src="{filter.url}" alt="Photo edited with Unstagram"
 									style={{WebkitFilter:
 										`blur(${filter.contrast}px)` +
 										`brightness(${filter.brightness}%)` +
@@ -50,10 +55,11 @@ class Gallery extends React.Component{
 										`saturate(${filter.saturate}%)` +
 										`sepia(${filter.sepia}%)` }}
 										/>
-									</li>
+									</div>
+
 							)
 						})}
-					</ul>
+					</div>
 			</div>
 		)
 	}

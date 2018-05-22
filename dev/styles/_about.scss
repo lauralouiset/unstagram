@@ -9,9 +9,19 @@ ABOUT SECTION
 	box-shadow: 2px 2px 2px $darkshade;
 	color: $darkshade;
 	padding: 30px;
+	a, a:visited{
+		color: $accent-blue
+	}
 
 	@include mq(med){
 		width: 90%
+	}
+		@include mq(med){
+		flex-direction:column;
+		margin-bottom: 80px;
+	}
+	@include mq(sm){
+		margin-bottom: 120px;
 	}
 }
 

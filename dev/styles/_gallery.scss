@@ -26,3 +26,14 @@ GALLERY
 	font-family: $heading;
 
 }
+
+.photoGallery{
+	display:flex;
+	flex-flow: row wrap;
+}
+
+.galleryImage{
+	width: 30%;
+	height: auto;
+	object-fit: cover;
+}

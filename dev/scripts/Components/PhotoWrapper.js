@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import firebase from 'firebase';
 import {
 	BrowserRouter as Router,
@@ -35,18 +34,6 @@ class PhotoWrapper extends React.Component {
 		this.savePhoto = this.savePhoto.bind(this);
 
 	}
-	componentDidMount(){
-		const config = {
-			apiKey: "AIzaSyARNtT04asipwsNU6H_OqvJ4NUmGXl95bQ",
-			authDomain: "uglygram-666.firebaseapp.com",
-			databaseURL: "https://uglygram-666.firebaseio.com",
-			projectId: "uglygram-666",
-			storageBucket: "uglygram-666.appspot.com",
-			messagingSenderId: "351785856531"
-		};
-		firebase.initializeApp(config);
-	}
-
 	handleChange(e) {
 		e.preventDefault();
 		this.setState({
@@ -71,7 +58,7 @@ class PhotoWrapper extends React.Component {
 				//retrieve new url of image from Firebase
 				newImg.getDownloadURL().then((url) => {
 					this.setState({
-						//update state to make currentPhoto URL available to canvas
+						//update state to make currentPhoto URL available to photo display
 						currentPhoto: url
 					})
 				})
